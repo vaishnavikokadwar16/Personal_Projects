@@ -28,6 +28,6 @@ For instance, field 3 is **Mean Radius**, field 13 is **Radius SE**, field 23 is
 **Class distribution**: 357 benign, 212 malignant
 
 **Models Used for the Classification**:
-1. Logisitc Regression
+1. Logistic Regression
 2. Decision Tree
 3. Neural Network
