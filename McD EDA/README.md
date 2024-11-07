@@ -2,12 +2,12 @@
 
 Review the following three files, also found in this folder:
 <br>
-<Weekly sales CSV>
+Weekly sales CSV
 <br>
-<Restaurant facts CSV>
+Restaurant facts CSV
 <br>
-<Data dictionary XLS>
-<br>
+Data dictionary XLS
+<br><br>
 Perform an exploratory data analysis on the files above. Some of the work you do here will probably never be seen by anyone else.  However, to understand the data, you should at a minimum take the following steps:
 <br>
 1. Examine the distribution/frequency counts of each variable
