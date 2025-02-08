@@ -1,6 +1,8 @@
 **Problem Statement / Business Problem**
 
-Review the following three files, also found in this folder:
+The McDonald's Sales data helps us understand the effect of the All-Day breakfast promotions that the company ran several years ago. This project aims to determine the success of this promotion based on various metrics like revenue growth, customer retention, new customer initiation, operational challenges, etc.
+
+The dataset has 3 data tables:
 <br>
 Weekly sales CSV
 <br>
@@ -8,15 +10,15 @@ Restaurant facts CSV
 <br>
 Data dictionary XLS
 <br><br>
-Perform an exploratory data analysis on the files above. Some of the work you do here will probably never be seen by anyone else.  However, to understand the data, you should at a minimum take the following steps:
+This project performs an exploratory data analysis on the files above, including the following steps:
 <br>
 1. Examine the distribution/frequency counts of each variable
 2. Examine the missingness of each variable, especially “unexpectedly missing” values
-3. Determine whether any variable suffers from apparent quality control issues, such as data entry errors, or rows which do not seem relevant to the issue at hand
+3. Determine whether any variable suffers from apparent quality control issues, such as data entry errors or rows that do not seem relevant to the issue at hand
 4. Determine any formulaic connections between columns and confirm that the formula always works in each row
-5. Search for clusters or subgroups of observations which seem to “behave” differently than the rest
+5. Search for clusters or subgroups of observations that seem to “behave” differently than the rest
 <br>
-Submit a Word or PDF document with your answers to the following questions. Include any graphs or tables or sample rows which help support your answers, but do not include your script or any raw terminal output:
+The final project document contains the analysis and conclusion for the following business questions:
 <br>
 1. What is the business problem as you understand it?
 <br>
