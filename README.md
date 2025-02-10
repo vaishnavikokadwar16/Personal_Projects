@@ -21,3 +21,6 @@ This project evaluates the impact of **McDonald's All-Day Breakfast promotion**,
 
 ### 6️⃣ Customer Churn Prediction for a Fitness Center 🏋️‍♂️  
 Built a **predictive model** to analyze customer churn patterns for a **fitness center**, using **logistic regression, decision trees, and ensemble models**. The findings help develop **personalized retention strategies** to improve customer loyalty.  
+
+### 7️⃣ Chicago Taxi Trips Analysis 🚖  
+Conducted an in-depth analysis of **6.38M Chicago taxi trips** across **23 variables** using **R and Python**, applying statistical methods like **linear regression, inference, and F-tests** to extract insights and validate findings.  
