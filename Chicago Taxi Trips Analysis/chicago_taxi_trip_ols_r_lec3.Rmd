@@ -1,0 +1,316 @@
+---
+title: "Chicago Taxi Trips in Year 2022"
+author: "Copyright © 2024 Danny Ng"
+output:
+  html_document:
+    number_sections: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = '') # results = 'hold'
+```
+
+***
+
+# Read the Data
+
+```{r}
+data <- read.csv('chicago_taxi_trip_sample.csv')
+
+dim(data)
+str(data)
+head(data, 2)
+tail(data, 2)
+summary(data)
+```
+
+# Exploratory Data Analysis and Visualization
+
+```{r}
+# Correlation matrix of numerical variables
+numerical_cols <- c('trip_seconds', 'trip_miles', 'fare', 'tips', 'tolls',
+                    'extras', 'trip_total', 'tips_percent')
+C <- cor(data[numerical_cols])
+
+C
+```
+
+```{r, message = FALSE}
+library(ggcorrplot)
+
+# Visualize correlation matrix as heat map
+ggcorrplot(C[,ncol(C):1],
+           legend.title = '',
+           color = c('red4', 'white', 'skyblue3'),
+           outline.color = 'white',
+           lab = TRUE,
+           lab_size = 3)
+```
+
+```{r, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 8}
+library(GGally)
+
+# Pair plot of (a sample of) numerical variables
+set.seed(1)
+sample.idx <- sample(nrow(data), 10000)
+
+ggpairs(data[sample.idx, numerical_cols],
+        upper = list(continuous = 'points'),
+        lower = list(continuous = 'cor'),
+        progress = FALSE)
+```
+
+```{r, fig.width = 8, fig.height = 6}
+library(ggplot2)
+
+ggplot(data, aes(x = fare, y = trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  facet_wrap(vars(hour), ncol=6)
+```
+
+```{r, fig.width = 8, fig.height = 4}
+ggplot(data, aes(x = fare, y = trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  facet_wrap(vars(day_of_week), ncol=5)
+```
+
+```{r, fig.width = 8, fig.height = 4}
+ggplot(data, aes(x = fare, y = trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  facet_wrap(vars(month), ncol=6)
+```
+
+```{r, fig.width = 8, fig.height = 3}
+ggplot(data, aes(x = fare, y = trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  facet_wrap(vars(payment_type))
+```
+
+```{r, fig.width = 8, fig.height = 8}
+ggplot(data, aes(x = fare, y = trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  facet_grid(rows=vars(pickup_area), cols=vars(dropoff_area))
+```
+
+```{r, message = FALSE}
+library(dplyr)
+
+data %>%
+  group_by(pickup_area, dropoff_area) %>%
+  summarise(count = n(),
+            across(c('trip_miles', 'trip_seconds', 'fare'), mean)) %>%
+  mutate(mph = trip_miles / trip_seconds * 3600,
+         cost_per_mile = fare / trip_miles) %>%
+  print(width=Inf)
+```
+
+# Simple Linear Regression
+
+```{r}
+model <- lm(trip_seconds ~ fare, data = data)
+
+summary(model)
+coef(model) # See str(model)
+
+summary(model)$r.squared # See str(summary(model))
+```
+
+```{r, fig.width = 6, fig.height = 5}
+ggplot(data, aes(fare, trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = 'lm',
+              formula = y ~ x,
+              se = FALSE,
+              color='orange') +
+  ggtitle('Linear Regression')
+```
+
+```{r}
+# Compute mean squared error MSE
+y <- data$trip_seconds
+y.pred <- fitted(model) # Also fitted.values(model) and model$fitted.values
+
+c(mean((y - y.pred) ** 2), mean(residuals(model) ** 2), mean(model$residuals ** 2))
+```
+
+```{r}
+# Compute various sums of squares
+ss.reg <- sum((y.pred - mean(y)) ** 2)
+ss.error <- sum((y - y.pred) ** 2)
+ss.total <- sum((y - mean(y)) ** 2) # SST = SSR + SSE
+              
+c(ss.reg, ss.error, ss.total)
+
+# Compute coefficient of determination R^2
+c(cor(y, y.pred) ** 2,
+  ss.reg / ss.total, # SSR / SST
+  1 - ss.error / ss.total, # 1 - SSE / SST
+  summary(model)$r.squared)
+```
+
+# Multiple Linear Regression
+
+```{r}
+summary(lm(trip_seconds ~ fare + tips_percent, data = data))
+```
+
+```{r}
+# Design matrix with a column of 1's for the intercept term
+X <- model.matrix(trip_seconds ~ fare + tips_percent, data = data)
+
+head(X)
+```
+
+# Multicollinearity
+
+```{r}
+summary(lm(trip_seconds ~ fare, data = data))
+
+with(data, cor(fare, fare * 2)) # Corr(fare, fare * 2) = 1
+
+# Parameter estimation is very sensitive or NA
+summary(lm(trip_seconds ~ fare + I(fare * 2), data = data)) # See ?formula about I(...)
+```
+
+```{r}
+# Fare and trip miles are highly correlated
+with(data, cor(fare, trip_miles))
+
+summary(lm(trip_seconds ~ trip_miles, data = data))
+
+# Poor model explainability
+summary(lm(trip_seconds ~ fare + trip_miles, data = data))
+```
+
+# Variance Inflation Factor VIF
+
+```{r, message = FALSE}
+library(car) # library(faraway)
+
+model <- lm(trip_seconds ~ ., data = data[numerical_cols])
+vif(model)
+```
+
+# Polynomial Regression
+
+```{r}
+summary(lm(trip_seconds ~ fare + I(fare ** 2), data = data))
+summary(lm(trip_seconds ~ poly(fare, 2, raw = TRUE), data = data))
+```
+
+```{r}
+# Design matrix with columns of x^0, x^1, and x^2
+X <- model.matrix(trip_seconds ~ fare + I(fare ** 2), data = data)
+
+head(X)
+```
+
+```{r, fig.width = 7, fig.height = 5}
+ggplot(data, aes(fare, trip_seconds)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = 'lm',
+              formula = y ~ x,
+              se = FALSE,
+              aes(color='1')) + 
+  geom_smooth(method = 'lm',
+              formula = y ~ poly(x, 2),
+              se = FALSE,
+              aes(color='2')) +
+  geom_smooth(method = 'lm',
+              formula = y ~ poly(x, 3),
+              se = FALSE,
+              aes(color='3')) +
+  scale_color_manual(name='Polynomial Degree', values=c('orange', 'red', 'green3')) +
+  ggtitle('Polynomial Regression')
+```
+
+# Categorical Variable
+
+```{r}
+data$night <- !between(data$hour, 7, 20)
+
+table(data$night) / nrow(data)
+```
+
+```{r}
+model <- lm(trip_seconds ~ fare + night, data = data)
+
+summary(model)
+```
+
+```{r, fig.width = 6, fig.height = 5, message = FALSE}
+ggplot(data, aes(fare, trip_seconds, color = night)) +
+  geom_point() +
+  geom_smooth(method = 'lm',
+              mapping = aes(y = predict(model, data)),
+              se = FALSE) +
+  ggtitle('trip_seconds ~ fare + night')
+```
+
+```{r}
+hour_type <- list('Rush Hour'= c(7:9, 15:18),
+                  'Night' = c(0:6, 21:23),
+                  'Other' = c(10:14, 19:20))
+data$hour_type <- ''
+for (i in seq_along(hour_type)) {
+  data$hour_type[data$hour %in% hour_type[[i]]] <- names(hour_type)[i]
+}
+
+table(data$hour_type) / nrow(data)
+
+summary(lm(trip_seconds ~ fare + hour_type, data = data))
+```
+
+```{r}
+model <- lm(trip_seconds ~ 0 + fare + hour_type, data = data)
+
+summary(model)
+```
+
+```{r, fig.width = 6, fig.height = 5, message = FALSE}
+ggplot(data, aes(fare, trip_seconds, color = hour_type)) +
+  geom_point() +
+  geom_smooth(method = 'lm',
+              mapping = aes(y = predict(model, data)),
+              se = FALSE) +
+  ggtitle('trip_seconds ~ fare + hour_type')
+```
+
+# Interaction
+
+```{r}
+# Method 1: Omit one level of the one-hot encoding
+summary(lm(trip_seconds ~ fare + night + fare:night, data = data))
+```
+
+```{r}
+# Method 2: Keep all levels of the one-hot encoding but omit the intercept and fare terms
+summary(lm(trip_seconds ~ 0 + night + fare:night, data = data))
+```
+
+```{r, fig.width = 6, fig.height = 5, message = FALSE}
+ggplot(data, aes(fare, trip_seconds, color = night)) +
+  geom_point() +
+  geom_smooth(method = 'lm',
+              se = FALSE) +
+  ggtitle('trip_seconds ~ fare + night + fare:night')
+```
+
+```{r}
+# Method 1: Omit one level of the one-hot encoding
+summary(lm(trip_seconds ~ fare + hour_type + fare:hour_type, data = data))
+```
+
+```{r}
+# Method 2: Keep all levels of the one-hot encoding but omit the intercept and fare terms
+summary(lm(trip_seconds ~ 0 + hour_type + fare:hour_type, data = data))
+```
+
+```{r, fig.width = 6, fig.height = 5, message = FALSE}
+ggplot(data, aes(fare, trip_seconds, color = hour_type)) +
+  geom_point() +
+  geom_smooth(method = 'lm',
+              se = FALSE) +
+  ggtitle('trip_seconds ~ fare + night + fare:hour_type')
+```
