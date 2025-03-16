@@ -24,3 +24,6 @@ Built a **predictive model** to analyze customer churn patterns for a **fitness 
 
 ### 7️⃣ Chicago Taxi Trips Analysis 🚖  
 Conducted an in-depth analysis of **6.38M Chicago taxi trips** across **23 variables** using **R and Python**, applying statistical methods like **linear regression, inference, and F-tests** to extract insights and validate findings.  
+
+### 8️⃣ Online Gaming Behavior Prediction System 🎮  
+Designed a **machine learning model** to predict **player engagement levels** and enhance **game performance** by analyzing player behavior data. The project focuses on identifying key factors that influence engagement, optimizing game design, and improving user retention through **predictive analytics and recommendation systems**.
