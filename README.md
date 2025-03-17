@@ -27,3 +27,6 @@ Conducted an in-depth analysis of **6.38M Chicago taxi trips** across **23 varia
 
 ### 8️⃣ Online Gaming Player Analysis 🎮  
 Designed a **machine learning model** to predict **player engagement levels** and enhance **game performance** by analyzing player behavior data. The project focuses on identifying key factors that influence engagement, optimizing game design, and improving user retention through **predictive analytics and recommendation systems**.
+
+### 9️⃣ Receipt Volume Forecasting System 📈  
+A comprehensive **time series prediction model** designed to forecast **receipt volumes** for the upcoming year based on historical daily receipt data. This project delivers an end-to-end solution, from **data processing and modeling to visualization**, aimed at improving **revenue forecasting and operational capacity planning**.  
