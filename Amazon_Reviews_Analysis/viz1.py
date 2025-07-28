@@ -11,6 +11,9 @@ st.set_page_config(page_title="Daily Review Counts", layout="wide")
 # Title
 st.title("Amazon Customer Reviews Analysis")
 
+st.write("Current working directory:", os.getcwd())
+st.write("Files in current directory:", os.listdir())
+
 # Load data
 daily_counts = pd.read_csv('datasets_for_viz/daily_counts_pd_clean.csv')
 daily_counts['review_date'] = pd.to_datetime(daily_counts['review_date'])
