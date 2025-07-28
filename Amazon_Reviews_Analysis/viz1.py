@@ -12,19 +12,16 @@ st.set_page_config(page_title="Daily Review Counts", layout="wide")
 # Title
 st.title("Amazon Customer Reviews Analysis")
 
-st.write("Current working directory:", os.getcwd())
-st.write("Files in current directory:", os.listdir())
-
 # Load data
-daily_counts = pd.read_csv('datasets_for_viz/daily_counts_pd_clean.csv')
+daily_counts = pd.read_csv('Amazon_Reviews_Analysis/datasets_for_viz/daily_counts_pd_clean.csv')
 daily_counts['review_date'] = pd.to_datetime(daily_counts['review_date'])
 daily_counts = daily_counts.sort_values('review_date')
 
-monthly_counts = pd.read_csv('datasets_for_viz/monthly_counts_pd_clean.csv')
+monthly_counts = pd.read_csv('Amazon_Reviews_Analysis/datasets_for_viz/monthly_counts_pd_clean.csv')
 monthly_counts['year_month'] = pd.to_datetime(monthly_counts['year_month'])
 monthly_counts = monthly_counts.sort_values('year_month')
 
-monthly_counts_top = pd.read_csv('datasets_for_viz/monthly_counts_pd_top.csv')
+monthly_counts_top = pd.read_csv('Amazon_Reviews_Analysis/datasets_for_viz/monthly_counts_pd_top.csv')
 monthly_counts_top['year_month'] = pd.to_datetime(monthly_counts_top['year_month'])
 monthly_counts_top = monthly_counts_top.sort_values('year_month')
 
@@ -120,8 +117,8 @@ st.plotly_chart(fig7, use_container_width=True)
 
 st.subheader("Review Counts Aggregated Analysis")
 
-df2 = pd.read_csv("datasets_for_viz/reviews_group.csv")
-df3 = pd.read_csv("datasets_for_viz/reviews_group_verified.csv")
+df2 = pd.read_csv("Amazon_Reviews_Analysis/datasets_for_viz/reviews_group.csv")
+df3 = pd.read_csv("Amazon_Reviews_Analysis/datasets_for_viz/reviews_group_verified.csv")
 
 col1, col2 = st.columns(2)
 
@@ -169,8 +166,8 @@ with col2:
 
 st.subheader("Products Analysis")
 
-df4 = pd.read_csv("datasets_for_viz/category_group.csv")
-df5 = pd.read_csv("datasets_for_viz/category_price_avg.csv")
+df4 = pd.read_csv("Amazon_Reviews_Analysis/datasets_for_viz/category_group.csv")
+df5 = pd.read_csv("Amazon_Reviews_Analysis/datasets_for_viz/category_price_avg.csv")
 
 df4['category'] = df4['category'].fillna('Not Available')
 
