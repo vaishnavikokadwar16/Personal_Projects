@@ -1,8 +1,0 @@
-streamlit #add other python packages that you need google to install in order for your app to run
-pandas
-numpy
-matplotlib
-seaborn
-plotly.express
-google-cloud-aiplatform #this is required
-google-cloud-logging  #this is required
