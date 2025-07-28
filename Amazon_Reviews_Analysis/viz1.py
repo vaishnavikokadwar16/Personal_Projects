@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.dates as mdates
 import plotly.express as px
+import os
 
 # Page config
 st.set_page_config(page_title="Daily Review Counts", layout="wide")
