@@ -14,10 +14,17 @@ st.set_page_config(page_title="Amazon Customer Reviews Analysis", layout="wide")
 # Title
 st.title("Amazon Customer Reviews Analysis")
 
-with open("Amazon_Reviews_Analysis/amazon_logo.json") as f:
-    lottie_json = json.load(f)
+col9, col10 = st.columns(2)
 
-st_lottie(lottie_json, height=200)
+with col9:
+    with open("Amazon_Reviews_Analysis/amazon_logo.json") as f:
+        lottie_logo = json.load(f)
+    st_lottie(lottie_logo, height=200)
+
+with col10:
+    with open("Amazon_Reviews_Analysis/shopping.json") as f:
+        lottie_shop = json.load(f)
+    st_lottie(lottie_shop, height=200)
 
 # Load data
 daily_counts = pd.read_csv('Amazon_Reviews_Analysis/datasets_for_viz/daily_counts_pd_clean.csv')
