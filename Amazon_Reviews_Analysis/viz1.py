@@ -5,12 +5,19 @@ import seaborn as sns
 import matplotlib.dates as mdates
 import plotly.express as px
 import os
+from streamlit_lottie import st_lottie
+import json
 
 # Page config
-st.set_page_config(page_title="Daily Review Counts", layout="wide")
+st.set_page_config(page_title="Amazon Customer Reviews Analysis", layout="wide")
 
 # Title
 st.title("Amazon Customer Reviews Analysis")
+
+with open("lottie_hello.json") as f:
+    lottie_json = json.load(f)
+
+st_lottie(lottie_json, height=200)
 
 # Load data
 daily_counts = pd.read_csv('Amazon_Reviews_Analysis/datasets_for_viz/daily_counts_pd_clean.csv')
