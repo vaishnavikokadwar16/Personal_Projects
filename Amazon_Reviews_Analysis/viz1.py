@@ -209,7 +209,7 @@ with col4:
     # Show in Streamlit
     st.plotly_chart(fig5, use_container_width=True)
 
-df6 = pd.read_csv('datasets_for_viz/correlation_data.csv')
+df6 = pd.read_csv('Amazon_Reviews_Analysis/datasets_for_viz/correlation_data.csv')
 
 col7, col8 = st.columns(2)
 
