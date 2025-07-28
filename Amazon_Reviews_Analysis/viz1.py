@@ -14,7 +14,7 @@ st.set_page_config(page_title="Amazon Customer Reviews Analysis", layout="wide")
 # Title
 st.title("Amazon Customer Reviews Analysis")
 
-with open("lottie_hello.json") as f:
+with open("Amazon_Reviews_Analysis/amazon_logo.json") as f:
     lottie_json = json.load(f)
 
 st_lottie(lottie_json, height=200)
