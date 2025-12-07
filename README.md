@@ -1,32 +1,53 @@
-# 📌 My Data Science & Analytics Projects  
+# 📌 Data Science & Analytics Portfolio  
 
-Welcome to my GitHub repository! 🚀 This space showcases a mix of **academic and side projects** that explore various data science techniques, machine learning models, and analytical insights. Each project focuses on solving real-world problems using **Python, R, SQL, and data visualization tools** like **PowerBI, Tableau, and Streamlit**.  
+Welcome to my project portfolio! 🚀  
+This repository highlights a collection of **academic, professional, and side projects** built using **Python, R, SQL, PySpark, Tableau, Power BI, and Streamlit**.  
+Each project focuses on applying data science, machine learning, and analytical techniques to solve real-world problems.
 
-## 📂 Projects Overview  
+---
 
-### 1️⃣ Iris Species Dashboard 🌸  
-A **visualization-driven** project that explores the famous **Iris dataset**, showcasing **species classification** through interactive **dashboards**. This project leverages **Streamlit and Plotly** for an intuitive user interface.  
+## 📂 Project Highlights  
 
-### 2️⃣ Breast Cancer Prediction 🎗️  
-Developed a **machine learning model** to predict breast cancer using **classification techniques**. The project applies **feature engineering, model evaluation, and hyperparameter tuning** to optimize accuracy.  
+### 1️⃣ Chicago Taxi Trips Analysis 🚖  
+Analyzed **6.38M Chicago taxi trips** across **23 variables** using **R and Python**, applying statistical methods like **linear regression, inference, and F-tests** to uncover key insights. Built interactive visualizations and prediction tools to evaluate trip trends and durations.
 
-### 3️⃣ Walmart Sales Analysis with Streamlit 🛒  
-A **dashboard-based analysis** of Walmart sales data using **Streamlit**. This project provides insights into **sales trends, regional performance, and demand forecasting**, utilizing **Python, Pandas, and Matplotlib**.  
+---
 
-### 4️⃣ Patient Readmission Analysis 🏥  
-An exploratory **healthcare analytics project** that examines patient **readmission rates**, identifying key risk factors through **statistical modeling and predictive analytics**. The project aims to support **hospital resource management and patient care improvements**.  
+### 2️⃣ GenAI-Powered Legal Assistant (LexLead.AI) ⚖️  
+Developed an **open-source legal AI assistant** specialized in Texas Family Law. Utilized **fine-tuning, RAG pipelines, LLM-as-Judge evaluation, and safety alignment**, achieving an **80% accuracy improvement** over baseline models.
+
+---
+
+### 3️⃣ Receipt Volume Forecasting System 📈  
+Built an **end-to-end time series forecasting system** to predict annual receipt volumes using daily historical data.  
+Includes **data processing, modeling (Prophet, ARIMA, XGBoost), cross-validation, and visualization**, supporting improved **revenue forecasting, staffing, and capacity planning**.
+
+---
+
+### 4️⃣ Customer Churn Prediction for a Fitness Center 🏋️‍♂️  
+Developed **classification models** (Logistic Regression, Decision Trees, Ensembles) to predict customer churn for a fitness center.  
+Insights enable **personalized retention strategies** and targeted customer engagement.
+
+---
 
 ### 5️⃣ McDonald's Sales & Promotion Analysis 🍔  
-This project evaluates the impact of **McDonald's All-Day Breakfast promotion**, analyzing its success across **revenue growth, customer retention, new customer acquisition, and operational challenges**. The insights are derived using **time-series analysis, A/B testing, and data visualization techniques**.  
+Evaluated the impact of McDonald's **All-Day Breakfast promotion** using **time-series analysis, A/B comparisons, and dashboard visualizations**.  
+Assessed effects on **revenue growth, customer retention, and new customer acquisition**.
 
-### 6️⃣ Customer Churn Prediction for a Fitness Center 🏋️‍♂️  
-Built a **predictive model** to analyze customer churn patterns for a **fitness center**, using **logistic regression, decision trees, and ensemble models**. The findings help develop **personalized retention strategies** to improve customer loyalty.  
+---
 
-### 7️⃣ Chicago Taxi Trips Analysis 🚖  
-Conducted an in-depth analysis of **6.38M Chicago taxi trips** across **23 variables** using **R and Python**, applying statistical methods like **linear regression, inference, and F-tests** to extract insights and validate findings.  
+### 6️⃣ Breast Cancer Prediction 🎗️  
+Implemented **classification algorithms** (SVM, KNN, Random Forest) with **feature engineering and model tuning** to predict breast cancer from diagnostic data.  
+Focuses on **accuracy, recall, and interpretability** for dependable clinical decision support.
 
-### 8️⃣ Online Gaming Player Analysis 🎮  
-Designed a **machine learning model** to predict **player engagement levels** and enhance **game performance** by analyzing player behavior data. The project focuses on identifying key factors that influence engagement, optimizing game design, and improving user retention through **predictive analytics and recommendation systems**.
+---
 
-### 9️⃣ Receipt Volume Forecasting System 📈  
-A comprehensive **time series prediction model** designed to forecast **receipt volumes** for the upcoming year based on historical daily receipt data. This project delivers an end-to-end solution, from **data processing and modeling to visualization**, aimed at improving **revenue forecasting and operational capacity planning**.  
+### 7️⃣ Patient Readmission Analysis 🏥  
+Performed exploratory and predictive analysis to understand **hospital readmission patterns**, identifying key risk factors using **statistical modeling**.  
+Supports **resource allocation** and **care-quality improvement**.
+
+---
+
+### 8️⃣ Online Gaming Player Engagement Analysis 🎮  
+Built a **player engagement prediction model** using gameplay behavior data.  
+Identified engagement drivers and recommended strategies for **retention optimization** and improved game design.
